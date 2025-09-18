@@ -366,7 +366,7 @@
             <p>MGT357 - Fall 2025 | Portfolio Project</p>
             
             <div class="student-info">
-                <div><strong>Student:</strong> [Your Name Here]</div>
+                <div><strong>Student:</strong> [Brian Habel]</div>
                 <div><strong>Problem Focus:</strong> [Your Management Problem]</div>
                 <div><strong>Repository:</strong> <a href="#" style="color: #FFB612;">[Your GitHub Link]</a></div>
                 <div><strong>Last Updated:</strong> [Today's Date]</div>
