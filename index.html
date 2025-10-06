@@ -4,18 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My EBM Dashboard | MGT357 - Fall 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === CSS CUSTOM PROPERTIES === */
+        /* === JMU PURPLE & CREAM THEME === */
         :root {
-            --primary-gradient: linear-gradient(135deg, #101820 0%, #FFB612 100%);
-            --tab-active: #101820;
-            --tab-inactive: #FFB612;
-            --tab-active-text: #FFB612;
-            --tab-inactive-text: #101820;
-            --step-gold: #FFB612;
-            --step-black: #101820;
-            --border-radius: 15px;
-            --transition-speed: 0.3s;
+            --primary: #6B46C1;           /* Soft Purple */
+            --primary-light: #8B5CF6;     /* Light Purple */
+            --primary-dark: #553C9A;      /* Dark Purple */
+            --accent: #F5E6D3;            /* Warm Cream */
+            --accent-light: #FAF0E6;      /* Light Cream */
+            --accent-dark: #E8D5B7;       /* Darker Cream */
+            --success: #10B981;           /* Success Green */
+            --warning: #F59E0B;           /* Warning Amber */
+            --danger: #EF4444;            /* Danger Red */
+            
+            --text-primary: #1F2937;      /* Dark Gray */
+            --text-secondary: #4B5563;    /* Medium Gray */
+            --text-muted: #6B7280;        /* Light Gray */
+            --text-light: #ffffff;        /* White */
+            
+            --bg-primary: #ffffff;        /* White */
+            --bg-secondary: #F9FAFB;      /* Very Light Gray */
+            --bg-tertiary: #F3F4F6;       /* Light Gray */
+            --bg-card: #ffffff;           /* White */
+            
+            --border-color: #E5E7EB;      /* Border Gray */
+            --border-light: #F3F4F6;      /* Light Border */
+            --shadow-card: 0 4px 6px -1px rgba(107, 70, 193, 0.1), 0 2px 4px -1px rgba(107, 70, 193, 0.06);
+            --shadow-hover: 0 10px 15px -3px rgba(107, 70, 193, 0.1), 0 4px 6px -2px rgba(107, 70, 193, 0.05);
+            --shadow-large: 0 20px 25px -5px rgba(107, 70, 193, 0.1), 0 10px 10px -5px rgba(107, 70, 193, 0.04);
+            
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -25,322 +46,399 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--primary-gradient);
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-weight: 400;
+            background: 
+                linear-gradient(135deg, rgba(247, 250, 252, 0.65) 0%, rgba(237, 242, 247, 0.65) 100%),
+                url('https://www.glaveandholmes.com/wp-content/uploads/2024/03/VHDS8366-scaled.jpg') center/cover no-repeat fixed;
             min-height: 100vh;
-            padding: 20px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
         }
 
-        .container {
+        /* === HEADER SECTION === */
+        .dashboard-header {
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.9) 0%, rgba(139, 92, 246, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            color: var(--text-light);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-large);
+            border-bottom: 3px solid var(--accent-dark);
+        }
+
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .dashboard-header * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-icon {
+            font-size: 2.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .dashboard-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-subtitle {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .university-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .student-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            padding: 1.25rem;
+            border-radius: var(--border-radius);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
         }
 
-        .header {
-            background: linear-gradient(135deg, #101820, #FFB612);
-            color: #101820;
-            padding: 30px;
+        .student-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .student-info-item {
             text-align: center;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
         }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #FFB612;
-            text-shadow: 2px 2px 0 #101820, 0 0 10px #10182022;
-        }
-
-        .header p {
-            font-size: 1.2em;
+        .student-info-label {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
             opacity: 0.9;
-            color: #101820;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .student-info {
-            background: rgba(255, 182, 18, 0.08);
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 10px;
+        .student-info-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+        }
+
+        .student-info-value a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .student-info-value a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px rgba(245, 230, 211, 0.5);
+        }
+
+        /* === PROGRESS TRACKER === */
+        .progress-container {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+            box-shadow: var(--shadow-card);
+        }
+
+        .progress-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .progress-tracker {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            font-size: 0.9em;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* === SIMPLE TAB SYSTEM === */
-        .tab-nav {
-            display: flex;
-            background: #FFFDE4;
-            border-bottom: 3px solid #FFB612;
-        }
-
-        .tab-button {
-            flex: 1;
-            padding: 20px;
+        .progress-step {
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(226, 232, 240, 0.4);
+            border-radius: var(--border-radius);
+            padding: 1.5rem 1rem;
             text-align: center;
             cursor: pointer;
-            background: var(--tab-inactive);
-            color: var(--tab-inactive-text);
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: all var(--transition-speed);
-            border: none;
-            border-right: 2px solid #101820;
+            transition: var(--transition);
+            position: relative;
+            font-weight: 600;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
         }
 
-        .tab-button:last-child {
-            border-right: none;
+        .progress-step:nth-child(1) { animation-delay: 0.1s; }
+        .progress-step:nth-child(2) { animation-delay: 0.2s; }
+        .progress-step:nth-child(3) { animation-delay: 0.3s; }
+        .progress-step:nth-child(4) { animation-delay: 0.4s; }
+        .progress-step:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .tab-button:hover {
-            background: #ffe066;
-            color: #101820;
+        .progress-step:hover {
+            background: rgba(255, 255, 255, 0.9);
             transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            border-color: var(--accent-dark);
         }
 
-        .tab-button.active {
-            background: var(--tab-active);
-            color: var(--tab-active-text);
+        .progress-step-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .progress-step-label {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-step-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .progress-step.completed {
+            background: var(--accent-dark);
+            color: var(--primary-dark);
+            border-color: var(--accent-dark);
+            box-shadow: 0 8px 16px rgba(232, 213, 183, 0.3);
+        }
+
+        .progress-step.completed:hover {
+            background: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255,182,18, 0.3);
+            box-shadow: 0 12px 24px rgba(232, 213, 183, 0.4);
         }
 
+        .progress-step.active {
+            background: var(--primary);
+            color: var(--text-light);
+            border-color: var(--primary);
+            box-shadow: 0 8px 16px rgba(107, 70, 193, 0.3);
+        }
+
+        .progress-step.active:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(107, 70, 193, 0.4);
+        }
+
+        .progress-step.pending {
+            background: rgba(237, 242, 247, 0.65);
+            backdrop-filter: blur(12px);
+            color: var(--text-secondary);
+            border-color: rgba(226, 232, 240, 0.6);
+        }
+
+        /* === MAIN CONTENT AREA === */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* === TAB NAVIGATION === */
+        .tab-navigation {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-nav-item {
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(226, 232, 240, 0.25);
+            border-radius: var(--border-radius);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .tab-nav-item:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tab-nav-item.active {
+            background: var(--primary);
+            color: var(--text-light);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-card);
+        }
+
+        .tab-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: var(--accent-dark);
+            border-radius: 2px;
+        }
+
+        /* === CONTENT CARDS === */
         .tab-content {
             position: relative;
-            min-height: 500px;
         }
 
         .tab-panel {
             display: none;
-            padding: 40px;
-            animation: fadeIn 0.3s ease-in;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
         }
 
         .tab-panel.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+        .content-section {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-card);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* === FLOWCHART STYLING === */
-        .flowchart-step {
-            background: var(--step-gold);
-            color: var(--step-black);
-            padding: 15px 25px;
-            border-radius: 25px;
-            margin: 15px 0;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(255,182,18, 0.22);
-            border: 2px solid #101820;
+        .content-section-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--text-light);
+            padding: 1.5rem 2rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.01em;
         }
 
-        .decision-diamond {
-            background: var(--step-black);
-            color: var(--step-gold);
-            padding: 15px 25px;
-            border-radius: 10px;
-            margin: 15px 0;
-            text-align: center;
-            position: relative;
-            transform: rotate(45deg);
-            border: 2px solid #FFB612;
+        .content-section-body {
+            padding: 2rem;
         }
 
-        .decision-diamond .text {
-            transform: rotate(-45deg);
-            font-weight: bold;
+        .milestone-card {
+            background: linear-gradient(135deg, rgba(245, 230, 211, 0.25) 0%, rgba(250, 240, 230, 0.25) 100%);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(245, 230, 211, 0.4);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .content-file-preview {
-            background: #FFFDE4;
-            border: 2px dashed #FFB612;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .content-file-preview:hover {
-            border-color: #101820;
-            background: #fff9c4;
-        }
-
-        .content-file-preview h4 {
-            color: #FFB612;
-            margin-bottom: 10px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        .edit-notice {
-            background: #fff8e1;
-            border: 1px solid #FFB612;
-            color: #101820;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            font-size: 0.8em;
-        }
-
-        .evidence-type {
-            display: inline-block;
-            padding: 8px 15px;
-            margin: 5px;
-            border-radius: 20px;
-            color: #101820;
-            font-weight: bold;
-            background: #FFB612;
-            border: 1px solid #101820;
-        }
-
-        .scientific { background: #FFB612; color: #101820; }
-        .practitioner { background: #FFFDE4; color: #101820; }
-        .organizational { background: #101820; color: #FFB612; }
-        .stakeholder { background: #FFB612; color: #101820; }
-
-        .evidence-section {
-            margin: 40px 0;
-            padding: 25px;
-            border-left: 5px solid #FFB612;
-            background: #FFFDE4;
-            border-radius: 10px;
-        }
-
-        .evidence-section h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            border-radius: 25px;
-            display: inline-block;
-        }
-
-        .evidence-section .content-file-preview {
-            margin: 15px 0;
-        }
-
-        .progress-indicator {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background: linear-gradient(135deg, #FFB612, #FFFDE4);
-            margin: 0;
-            border-bottom: 3px solid #101820;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .progress-step {
-            flex: 1;
-            text-align: center;
-            padding: 12px 8px;
-            margin: 0 5px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: all var(--transition-speed);
-            position: relative;
-            cursor: pointer;
-            background: #FFFDE4;
-            color: #101820;
-            border: 2px solid #FFB612;
-        }
-
-        .progress-step.completed {
-            background: linear-gradient(135deg, #101820, #444444);
-            color: #FFB612;
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(16,24,32, 0.22);
-            border: 2px solid #FFB612;
-        }
-
-        .progress-step.active {
-            background: linear-gradient(135deg, #FFB612, #fff3b0);
-            color: #101820;
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(255,182,18, 0.26);
-            border: 2px solid #101820;
-        }
-
-        .progress-step.pending {
-            background: #FFFDE4;
-            color: #101820;
-            border: 2px dashed #FFB612;
-        }
-
-        .progress-step::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -15px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        .progress-step.completed::after {
-            border-left-color: #101820;
-        }
-
-        .progress-step.active::after {
-            border-left-color: #FFB612;
-        }
-
-        .progress-step.pending::after {
-            border-left-color: #FFB612;
-        }
-
-        .progress-step:last-child::after {
-            display: none;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #101820, #444444);
-            color: #FFB612;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 10px 5px;
-            transition: all var(--transition-speed);
-            border: 2px solid #FFB612;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,182,18, 0.22);
-            background: #FFB612;
-            color: #101820;
-            border: 2px solid #101820;
-        }
-
-        .milestone-tracker {
-            background: #FFFDE4;
-            border-left: 4px solid #FFB612;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-
-        .milestone-tracker h4 {
-            color: #101820;
-            margin-bottom: 10px;
+        .milestone-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-family: 'Source Sans Pro', sans-serif;
+            letter-spacing: 0.01em;
         }
 
         .checklist {
@@ -349,14 +447,828 @@
         }
 
         .checklist li {
-            padding: 5px 0;
-            color: #101820;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
         .checklist li:before {
-            content: "☐ ";
-            color: #FFB612;
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
             font-weight: bold;
+        }
+
+        /* Collapsible content styles */
+        .step-content {
+            display: none;
+            margin-left: 2rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease-out;
+        }
+
+        .step-content.expanded {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .process-step-card {
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+            color: var(--primary-dark);
+            padding: 1.5rem 2rem;
+            border-radius: 50px;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.125rem;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .process-step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .process-step-card::after {
+            content: '▼';
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .process-step-card.expanded::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .document-card {
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(226, 232, 240, 0.25);
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+        }
+
+        .document-card:hover {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: var(--accent-dark);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .document-header {
+            background: rgba(245, 230, 211, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+            text-align: center;
+        }
+
+        .document-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.0rem;
+            letter-spacing: 0.01em;
+        }
+
+        .edit-badge {
+            background: var(--accent-dark);
+            color: var(--primary-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        .document-content {
+            padding: 1.5rem;
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            background: rgba(255, 255, 255, 0.60);
+            backdrop-filter: blur(4px);
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* === PROJECT OVERVIEW STYLES === */
+        /* Removed - Project Overview section deleted */
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .tab-navigation {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .progress-tracker {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+            }
+
+            .student-card {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
         }
     </style>
 </head>
+<body>
+    <!-- HEADER SECTION -->
+    <div class="dashboard-header">
+        <div class="university-badge">
+            <span>🏛️</span>
+            <span>James Madison University | College of Business</span>
+        </div>
+        
+        <div class="dashboard-title-container">
+            <h1 class="dashboard-title">Evidence-Based Management Dashboard</h1>
+        </div>
+        <p class="dashboard-subtitle">MGT357 - Fall 2025 | Professional Portfolio Project</p>
+        
+        <div class="student-card">
+            <div class="student-info-item">
+                <div class="student-info-label">👨‍🎓 Student</div>
+                <div class="student-info-value">Brian Habel</div>
+            </div>
+            <div class="student-info-item">
+                <div class="student-info-label">🎯 Problem Focus</div>
+                <div class="student-info-value">Organizational Groupthink</div>
+            </div>
+            <div class="student-info-item">
+                <div class="student-info-label">📁 Repository</div>
+                <div class="student-info-value"><a href="https://github.com/BrianEHabel/MGT-357" target="_blank">GitHub Project</a></div>
+            </div>
+            <div class="student-info-item">
+                <div class="student-info-label">📅 Last Updated</div>
+                <div class="student-info-value" id="last-updated">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROGRESS TRACKER -->
+    <div class="progress-container">
+        <h2 class="progress-title">Project Progress Tracker</h2>
+        <div class="progress-tracker">
+            <div class="progress-step active" onclick="showTab(1)">
+                <div class="progress-step-icon">🎯</div>
+                <div class="progress-step-label">Step 1</div>
+                <div class="progress-step-title">Framework</div>
+            </div>
+            <div class="progress-step pending" onclick="showTab(2)">
+                <div class="progress-step-icon">🔬</div>
+                <div class="progress-step-label">Step 2</div>
+                <div class="progress-step-title">Evidence</div>
+            </div>
+            <div class="progress-step pending" onclick="showTab(3)">
+                <div class="progress-step-icon">⚖️</div>
+                <div class="progress-step-label">Step 3</div>
+                <div class="progress-step-title">Synthesis</div>
+            </div>
+            <div class="progress-step pending" onclick="showTab(4)">
+                <div class="progress-step-icon">🚀</div>
+                <div class="progress-step-label">Step 4</div>
+                <div class="progress-step-title">Application</div>
+            </div>
+            <div class="progress-step pending" onclick="showTab(5)">
+                <div class="progress-step-icon">📈</div>
+                <div class="progress-step-label">Step 5</div>
+                <div class="progress-step-title">Assessment</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        <!-- TAB NAVIGATION -->
+        <div class="tab-navigation">
+            <div class="tab-nav-item active" onclick="showTab(1)">
+                <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">🎯</div>
+                <div>Problem & Solution Framework</div>
+            </div>
+            <div class="tab-nav-item" onclick="showTab(2)">
+                <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">🔬</div>
+                <div>Evidence Hub</div>
+            </div>
+            <div class="tab-nav-item" onclick="showTab(3)">
+                <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">⚖️</div>
+                <div>Aggregation</div>
+            </div>
+            <div class="tab-nav-item" onclick="showTab(4)">
+                <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">🚀</div>
+                <div>Application</div>
+            </div>
+            <div class="tab-nav-item" onclick="showTab(5)">
+                <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">📈</div>
+                <div>Assessment</div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT -->
+        <div class="tab-content">
+            <!-- TAB 1: Problem & Solution Framework -->
+            <div class="tab-panel active" id="tab-1">
+                <!-- Milestone Tracker -->
+                <div class="milestone-card">
+                    <h3 class="milestone-title">📋 Milestone 1 Checklist (Due: Week 3)</h3>
+                    <ul class="checklist">
+                        <li>GitHub repository created and dashboard running</li>
+                        <li>Problem Definition completed using frameworks</li>
+                        <li>Stakeholder Analysis documented</li>
+                        <li>Success Criteria clearly defined</li>
+                        <li>Progress tracker updated</li>
+                    </ul>
+                </div>
+
+                <!-- Process Flow -->
+                <div class="content-section">
+                    <div class="content-section-header">
+                        EBM Process Flow - Steps 1-4
+                    </div>
+                    <div class="content-section-body">
+                        <div class="process-step-card" onclick="toggleStep('step1')">
+                            STEP 1: ASK - What is the assumed problem?
+                        </div>
+                        
+                        <div id="step1-content" class="step-content expanded">
+                            <!-- Problem Definition Document -->
+                            <div class="document-card" onclick="openContentFile('ask-problem-definition.txt')">
+                                <div class="document-header">
+                                    <div class="document-title">📝 Problem Definition Framework</div>
+                                    <span class="edit-badge">Click to edit in VS Code</span>
+                                </div>
+                                <div class="document-content">PROBLEM DEFINITION: GROUPTHINK IN ORGANIZATIONAL DECISION-MAKING
+
+X → Y Framework
+
+Current State (X):
+Our organization faces recurring groupthink within management and project teams, particularly during strategic and operational decision-making meetings. Teams often prioritize consensus over the quality of analysis, and members hesitate to challenge dominant opinions due to fear of social friction or negative evaluations. This results in decisions that lack critical evaluation, overlook potential risks, and fail to incorporate innovative ideas. Over time, this conformity has led to repetitive project outcomes, limited innovation, and avoidable strategic missteps that could have been mitigated by diverse thinking and open dissent.
+
+Desired State (Y):
+The organization aspires to establish a decision-making culture that values psychological safety, critical inquiry, and evidence-based debate. In this desired state, diverse perspectives are actively encouraged, dissent is framed as constructive, and data-driven reasoning guides conclusions. Leaders model openness to feedback, and team structures intentionally include cognitive and functional diversity. As a result, decisions will be higher in quality, innovation will increase, and risks will be better anticipated and managed.
+
+PICOC Framework
+
+Population (P):
+Management teams and cross-functional project groups in mid- to large-sized organizations, typically composed of 5–12 members. These individuals are responsible for strategic and operational decisions that directly affect organizational performance, innovation, and risk management.
+
+Intervention (I):
+Implement structured, evidence-based interventions that reduce groupthink, including:
+- Rotating devil's advocate roles during decision sessions
+- Anonymous digital feedback tools to surface dissenting opinions
+- Formal training on cognitive biases and critical thinking
+- Team composition policies ensuring diversity in function and background
+- Use of decision quality checklists and pre-mortem analysis techniques
+
+Comparison (C):
+Compared to current unstructured decision-making practices that favor harmony and speed over thorough evaluation, the new approach emphasizes open dialogue, psychological safety, and procedural fairness.
+
+Outcome (O):
+Expected measurable outcomes include:
+- 25% improvement in decision quality scores (measured via post-decision review surveys)
+- 20% increase in innovation proposals submitted by teams
+- Reduction in strategic project rework by 15%
+- Higher employee engagement and satisfaction with decision processes
+
+Context (C):
+This framework applies to knowledge-based organizational settings (e.g., corporate, technology, or professional services sectors) where complex decisions require input from diverse stakeholders. The recommended interventions can be implemented and evaluated over a 6–12 month period.
+
+Clear Problem Statement
+Our organization's current culture of consensus-driven decision-making leads to reduced innovation, poor risk assessment, and diminished decision quality. By implementing evidence-based interventions that promote constructive dissent, diversity of thought, and psychological safety, we can transition from a groupthink-prone environment to one characterized by critical thinking, creativity, and higher-quality strategic outcomes.</div>
+                            </div>
+
+                            <!-- Stakeholder Analysis Document -->
+                            <div class="document-card" onclick="openContentFile('ask-stakeholder-analysis.txt')">
+                                <div class="document-header">
+                                    <div class="document-title">👥 Stakeholder Analysis</div>
+                                    <span class="edit-badge">Click to edit in VS Code</span>
+                                </div>
+                                <div class="document-content">STAKEHOLDER ANALYSIS: GROUPTHINK IN ORGANIZATIONAL DECISION-MAKING
+
+Overview
+
+Reducing groupthink requires understanding who influences decision-making culture and who is impacted by its outcomes. The following stakeholder analysis identifies the primary and secondary stakeholders involved, their interests, levels of influence, and areas of alignment or conflict.
+
+Primary Stakeholders (High Influence, High Interest)
+
+1. Senior Leadership (Executives, Directors)
+
+Interest: Achieving high-quality, innovative, and risk-aware decisions that improve organizational performance.
+
+Influence: Very high. They shape the tone for psychological safety, openness to dissent, and diversity in team structures.
+
+Concerns: May unintentionally reinforce conformity if they equate consensus with alignment or speed. Need awareness of how leadership behaviors affect team dynamics.
+
+2. Middle Managers and Team Leaders
+
+Interest: Balancing decision efficiency with inclusive team dialogue.
+
+Influence: High, as they facilitate day-to-day decision processes and set expectations for participation.
+
+Concerns: Fear of slowing progress or appearing indecisive when encouraging debate. Require training in structured decision-making frameworks.
+
+3. Project and Cross-Functional Teams
+
+Interest: Fair, transparent, and inclusive decision processes that value diverse input.
+
+Influence: Moderate to high. While they execute decisions, their collective participation directly affects whether groupthink occurs.
+
+Concerns: Psychological safety and perception of whether dissent is truly welcomed or merely tolerated.
+
+Secondary Stakeholders (Varying Influence and Interest)
+
+1. Human Resources (HR) and Organizational Development
+
+Interest: Embedding inclusion, diversity, and leadership development practices.
+
+Influence: Moderate. HR supports interventions such as bias training, team assessments, and performance metrics related to decision quality.
+
+2. External Stakeholders (Clients, Partners, Regulators)
+
+Interest: High-quality, risk-aware decisions that result in reliable outcomes and compliance.
+
+Influence: Low to moderate, but their feedback and expectations can drive organizational change.
+
+Stakeholder Alignment and Potential Conflicts
+
+Alignment Opportunities: Senior leaders and HR share a common interest in improving decision quality and innovation outcomes.
+
+Potential Conflicts: Middle managers may resist changes that slow decision cycles or challenge hierarchical norms. Team members may remain hesitant to speak up unless leadership visibly supports dissent.
+
+Key Leverage Point: Empowering leaders to model and reward constructive dissent will have the greatest downstream impact on decision culture.</div>
+                            </div>
+
+                            <!-- Success Criteria Document -->
+                            <div class="document-card" onclick="openContentFile('ask-success-criteria.txt')">
+                                <div class="document-header">
+                                    <div class="document-title">🎯 Success Criteria Framework</div>
+                                    <span class="edit-badge">Click to edit in VS Code</span>
+                                </div>
+                                <div class="document-content">SUCCESS CRITERIA: GROUPTHINK IN ORGANIZATIONAL DECISION-MAKING
+
+Overview
+
+To evaluate the effectiveness of interventions aimed at reducing groupthink, this framework defines specific, measurable, achievable, relevant, and time-bound (SMART) criteria. These criteria link directly to the organization's objectives of improving decision quality, enhancing innovation, and fostering psychological safety.
+
+SMART Success Criteria
+
+1. Decision Quality Improvement
+Specific: Improve the quality of strategic and operational decisions made by management teams.
+Measurable: 25% improvement in decision quality scores from post-decision review surveys.
+Achievable: Supported by research indicating structured decision processes can raise outcomes by 20–30%.
+Relevant: Directly mitigates groupthink's effect on poor-quality decisions.
+Time-bound: Achieve measurable improvement within 6 months, sustain over 12 months.
+
+2. Innovation and Alternative Generation
+Specific: Increase the number of alternative solutions considered before decisions.
+Measurable: 50% increase in documented alternatives per decision (from 2–3 to 4–5).
+Achievable: Structured brainstorming and devil's advocate sessions can reliably expand options.
+Relevant: Counteracts groupthink's suppression of creative solutions.
+Time-bound: Observable improvement within 3 months of intervention rollout.
+
+3. Psychological Safety Enhancement
+Specific: Improve employees' comfort expressing dissenting opinions.
+Measurable: 30% improvement in psychological safety scores (Edmondson Scale).
+Achievable: Research shows structured feedback and leadership modeling can raise scores by 25–35%.
+Relevant: Builds the foundation for sustained reduction of groupthink.
+Time-bound: Quarterly improvements expected within a 12-month horizon.
+
+Stakeholder-Specific Success Indicators
+
+Senior Leadership
+- +15% strategic decision success rate
+- +25% increase in innovation metrics
+- +10% improvement in employee engagement
+
+Middle Managers and Team Leaders
+- 80% report improved team decision quality
+- 75% confident managing constructive conflict
+- 90% adoption of structured decision processes
+
+Project Teams
+- 85% feel heard in decision processes
+- 70% comfortable expressing dissent
+- 80% satisfaction with decision outcomes
+
+Financial and Operational Impact
+
+Cost Savings: $500K+ annual savings via reduced decision failures and 30% lower rework costs
+Risk Mitigation: Avoidance of 2–3 major risks valued at $100K+ each
+Revenue Enhancement: 20% more innovative ideas implemented; 25% faster market response
+
+Timeline for Success Measurement
+
+0–3 Months: Baseline data collection; training initiated.
+3–6 Months: Measurable improvement in psychological safety and decision diversity.
+6–12 Months: Significant rise in decision quality and innovation metrics.
+12+ Months: Cultural shift sustained; organization recognized for decision-making excellence.</div>
+                            </div>
+
+                            <!-- Solution Constraints Document -->
+                            <div class="document-card" onclick="openContentFile('ask-solution-constraints.txt')">
+                                <div class="document-header">
+                                    <div class="document-title">⚠️ Solution Constraints Analysis</div>
+                                    <span class="edit-badge">Click to edit in VS Code</span>
+                                </div>
+                                <div class="document-content">SOLUTION CONSTRAINTS: GROUPTHINK IN ORGANIZATIONAL DECISION-MAKING
+
+Overview
+
+While the proposed structured anti-groupthink intervention framework offers significant organizational benefits, several constraints will shape its implementation. These limitations must be recognized early to ensure realistic planning, resource allocation, and stakeholder expectations.
+
+1. Budgetary Constraints
+
+Estimated Cost: Initial investment of approximately $150K–$200K to design and deploy interventions (training programs, digital feedback tools, and evaluation systems).
+
+Challenge: Competing organizational priorities may limit available funds for cultural transformation initiatives.
+
+Mitigation: Implement pilot programs first to demonstrate ROI and secure incremental funding based on measurable results.
+
+2. Time Constraints
+
+Implementation Horizon: The full framework requires 9–12 months for planning, piloting, training, and evaluation.
+
+Challenge: Leadership and teams already face demanding schedules, which may slow rollout.
+
+Mitigation: Integrate anti-groupthink interventions into existing meetings and workflows to minimize disruption.
+
+3. Organizational Constraints
+
+Cultural Resistance: Some managers may equate dissent with conflict, resisting processes that encourage debate.
+
+Leadership Modeling: Without consistent support from senior leaders, behavioral change will be limited.
+
+Mitigation: Begin with a leadership awareness campaign and align groupthink reduction goals with performance metrics.
+
+4. Technical and Logistical Constraints
+
+Infrastructure Needs: Deployment of anonymous feedback systems requires secure digital tools and IT support.
+
+Data Integrity: Ensuring confidentiality while collecting meaningful feedback may require policy updates.
+
+Mitigation: Partner with IT and HR to establish clear governance and data security protocols.
+
+5. Compliance and Ethical Considerations
+
+Regulatory Boundaries: All data collection and internal communications must comply with GDPR/EEO standards and organizational privacy policies.
+
+Ethical Use: Anonymous feedback mechanisms must not be used for performance evaluation or punitive action.
+
+Summary
+
+These constraints do not prevent implementation but necessitate strategic planning and incremental execution. By addressing resource limits, time pressures, and cultural barriers proactively, the organization can create a sustainable foundation for long-term reduction of groupthink and improvement in decision quality.</div>
+                            </div>
+                        </div>
+
+                        <div class="process-step-card" onclick="toggleStep('step2')">
+                            STEP 2: ASK - What is the evidence for the assumed problem?
+                        </div>
+
+                        <div id="step2-content" class="step-content">
+                            <!-- Step 2 Content -->
+                            <div class="document-card" onclick="openContentFile('step2-problem-evidence.txt')">
+                                <div class="document-header">
+                                    <div class="document-title">🔍 Evidence for Problem Existence</div>
+                                    <span class="edit-badge">Click to edit in VS Code</span>
+                                </div>
+                                <div class="document-content">STEP 2: EVIDENCE FOR THE ASSUMED PROBLEM
+
+Research Question: What evidence supports the existence of groupthink problems in organizational decision-making?
+
+Evidence Requirements:
+1. Groupthink occurs frequently in organizational decision-making
+2. Groupthink negatively impacts decision quality and outcomes  
+3. Organizations suffer measurable consequences from groupthink
+4. Our target population (management teams) experiences these problems
+5. The problem is significant enough to warrant intervention
+
+Scientific Evidence Search Strategy:
+- Databases: Google Scholar, PubMed, JSTOR, Business Source Premier
+- Keywords: "groupthink," "organizational decision making," "team conformity," "decision quality"
+- Date Range: Last 10 years (2014-2024) for current relevance
+- Study Types: Meta-analyses, systematic reviews, experimental studies
+
+Key Research Areas:
+- Prevalence of groupthink in organizations
+- Impact on decision quality and outcomes
+- Financial and organizational costs
+- Industry-specific case studies
+
+Practitioner Evidence Collection:
+- Case studies from Harvard Business Review, McKinsey reports
+- Industry white papers and expert insights
+- Professional association publications
+- Real-world examples of groupthink failures</div>
+                            </div>
+                        </div>
+
+                        <div class="process-step-card" onclick="toggleStep('step3')">
+                            STEP 3: ASK - What is the preferred solution?
+                        </div>
+
+                        <div id="step3-content" class="step-content">
+                            <!-- Step 3 Content -->
+                            <div class="document-card" onclick="openContentFile('step3-preferred-solution.txt')">
+                                <div class="document-header">
+                                    <div class="document-title">💡 Preferred Solution Framework</div>
+                                    <span class="edit-badge">Click to edit in VS Code</span>
+                                </div>
+                                <div class="document-content">STEP 3: PREFERRED SOLUTION APPROACH
+
+Solution Overview:
+Structured Anti-Groupthink Intervention Framework - A comprehensive, evidence-based approach designed to systematically reduce groupthink in organizational decision-making through multiple reinforcing mechanisms.
+
+Core Solution Components:
+
+1. Structured Devil's Advocate Process
+Implementation: Rotating devil's advocate roles during strategic decision meetings
+Mechanism: Assigned team member challenges assumptions and presents alternative viewpoints
+Expected Impact: Forces consideration of counterarguments and potential failure scenarios
+
+2. Anonymous Digital Feedback System  
+Implementation: Digital platform for submitting dissenting opinions anonymously
+Mechanism: Pre-meeting input collection and real-time feedback during discussions
+Expected Impact: Reduces social pressure and enables honest expression of concerns
+
+3. Cognitive Bias and Critical Thinking Training
+Implementation: Comprehensive training program for all management team members
+Mechanism: Education on biases, decision frameworks, and critical thinking techniques
+Expected Impact: Increases awareness of groupthink symptoms and provides prevention tools
+
+4. Diverse Team Composition Policies
+Implementation: Requirements for functional, cognitive, and demographic diversity
+Mechanism: Intentional inclusion of diverse perspectives in team formation
+Expected Impact: Natural reduction in conformity through varied viewpoints
+
+5. Decision Quality Assessment Framework
+Implementation: Pre-mortem analysis and post-decision review processes
+Mechanism: Structured evaluation of decision processes and outcomes
+Expected Impact: Continuous improvement and accountability for decision quality
+
+Why This Solution:
+- Evidence-based: Each component supported by research
+- Comprehensive: Addresses structural, behavioral, and cultural aspects
+- Practical: Designed for real organizational constraints
+- Sustainable: Creates multiple reinforcing mechanisms for lasting change
+
+Expected ROI:
+- Cost savings from better decisions: $500K+ annually
+- Risk avoidance: $300K+ in prevented failures
+- Innovation value: $200K+ in new opportunities
+- Net positive ROI: $250K+ annually after year 1</div>
+                            </div>
+                        </div>
+
+                        <div class="process-step-card" onclick="toggleStep('step4')">
+                            STEP 4: ASK - What is the evidence for the preferred solution?
+                        </div>
+
+                        <div id="step4-content" class="step-content">
+                            <!-- Step 4 Content -->
+                            <div class="document-card" onclick="openContentFile('step4-solution-evidence.txt')">
+                                <div class="document-header">
+                                    <div class="document-title">📊 Evidence for Solution Effectiveness</div>
+                                    <span class="edit-badge">Click to edit in VS Code</span>
+                                </div>
+                                <div class="document-content">STEP 4: EVIDENCE FOR THE PREFERRED SOLUTION
+
+Research Question: What evidence supports the effectiveness of our proposed anti-groupthink interventions?
+
+Evidence Requirements for Each Solution Component:
+
+1. Devil's Advocate Effectiveness
+Research Evidence Needed:
+- Studies showing impact of structured dissent on decision quality
+- Meta-analyses of devil's advocate interventions
+- Experimental research on challenging group consensus
+- Long-term outcomes of institutionalized dissent processes
+
+2. Anonymous Feedback Systems
+Research Evidence Needed:
+- Effectiveness of anonymous input in group settings
+- Impact on psychological safety and participation
+- Technology-mediated feedback in organizational contexts
+- Comparison studies of anonymous vs. open feedback
+
+3. Bias Training and Education
+Research Evidence Needed:
+- Training effectiveness on reducing cognitive biases
+- Impact of critical thinking education on group decisions
+- Long-term retention of bias awareness training
+- Organizational implementation success rates
+
+4. Team Diversity Benefits
+Research Evidence Needed:
+- Relationship between team diversity and decision quality
+- Optimal diversity composition for decision-making teams
+- Cultural and demographic diversity impact studies
+- Functional diversity effects on innovation
+
+5. Decision Assessment Frameworks
+Research Evidence Needed:
+- Pre-mortem analysis effectiveness studies
+- Post-decision review impact on future decisions
+- Structured evaluation process outcomes
+- Continuous improvement in decision-making systems
+
+Evidence Collection Strategy:
+- Systematic literature review of intervention studies
+- Industry case studies of successful implementations
+- Organizational pilot program data
+- Stakeholder feedback on solution components</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: Evidence Hub -->
+            <div class="tab-panel" id="tab-2">
+                <div class="content-section">
+                    <div class="content-section-header">
+                        🔍 Evidence Collection Framework
+                    </div>
+                    <div class="content-section-body">
+                        <p style="font-size: 1.125rem; margin-bottom: 2rem;">Systematically collect and critically evaluate evidence from all four sources to support Steps 2 & 4 of the EBM process.</p>
+                        
+                        <div class="milestone-card">
+                            <h3 class="milestone-title">📋 Milestone 2 & 3 Checkpoints</h3>
+                            <ul class="checklist">
+                                <li><strong>Milestone 2 (Week 6):</strong> Scientific & Practitioner Evidence Complete</li>
+                                <li><strong>Milestone 3 (Week 9):</strong> Organizational & Stakeholder Evidence Complete</li>
+                                <li>All acquisition methods documented</li>
+                                <li>Evidence sources collected and organized</li>
+                                <li>Quality appraisals completed for each evidence type</li>
+                            </ul>
+                        </div>
+
+                        <div style="text-align: center; padding: 3rem; background: var(--bg-tertiary); border-radius: var(--border-radius); margin-top: 2rem;">
+                            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Evidence Collection In Progress</h3>
+                            <p style="color: var(--text-muted);">Complete Milestone 1 framework before proceeding to evidence gathering phase.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: Aggregation -->
+            <div class="tab-panel" id="tab-3">
+                <div class="content-section">
+                    <div class="content-section-header">
+                        ⚖️ Evidence Synthesis & Aggregation
+                    </div>
+                    <div class="content-section-body">
+                        <div style="text-align: center; padding: 3rem; background: var(--bg-tertiary); border-radius: var(--border-radius);">
+                            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Synthesis Phase - Coming Soon</h3>
+                            <p style="color: var(--text-muted);">This section will combine evidence from all four sources to reach evidence-based conclusions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: Application -->
+            <div class="tab-panel" id="tab-4">
+                <div class="content-section">
+                    <div class="content-section-header">
+                        🚀 Implementation & Application
+                    </div>
+                    <div class="content-section-body">
+                        <div style="text-align: center; padding: 3rem; background: var(--bg-tertiary); border-radius: var(--border-radius);">
+                            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Application Phase - Coming Soon</h3>
+                            <p style="color: var(--text-muted);">This section will detail the implementation plan for your evidence-based solution.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: Assessment -->
+            <div class="tab-panel" id="tab-5">
+                <div class="content-section">
+                    <div class="content-section-header">
+                        📊 Assessment & Evaluation
+                    </div>
+                    <div class="content-section-body">
+                        <div style="text-align: center; padding: 3rem; background: var(--bg-tertiary); border-radius: var(--border-radius);">
+                            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Assessment Phase - Final Stage</h3>
+                            <p style="color: var(--text-muted);">This section will evaluate the effectiveness of your EBM process and solution implementation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle step content visibility
+        function toggleStep(stepId) {
+            const content = document.getElementById(stepId + '-content');
+            const stepCard = event.target;
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                stepCard.classList.remove('expanded');
+                setTimeout(() => {
+                    content.style.display = 'none';
+                }, 300);
+            } else {
+                content.style.display = 'block';
+                setTimeout(() => {
+                    content.classList.add('expanded');
+                    stepCard.classList.add('expanded');
+                }, 10);
+            }
+        }
+
+        // Tab Navigation Functionality
+        function showTab(tabNumber) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const buttons = document.querySelectorAll('.tab-nav-item');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show the selected tab panel
+            document.getElementById(`tab-${tabNumber}`).classList.add('active');
+            
+            // Add active class to the clicked button
+            buttons[tabNumber - 1].classList.add('active');
+            
+            // Update progress indicator
+            updateProgressIndicator(tabNumber);
+        }
+        
+        // Update Progress Indicator based on current tab
+        function updateProgressIndicator(currentTab) {
+            const progressSteps = document.querySelectorAll('.progress-step');
+            
+            progressSteps.forEach((step, index) => {
+                step.classList.remove('completed', 'active', 'pending');
+                
+                if (index + 1 < currentTab) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentTab) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.add('pending');
+                }
+            });
+        }
+
+        // File opening functionality
+        function openContentFile(filename) {
+            alert(`Opening ${filename} in VS Code\n\nThis is where you can edit your content using GitHub Copilot for assistance!`);
+        }
+
+        // Toggle overview visibility
+        function toggleOverview() {
+            // Removed - Project Overview section deleted
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update the last updated date to current date
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                timeZone: 'America/New_York' // Eastern Time for JMU
+            };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            document.getElementById('last-updated').textContent = formattedDate;
+            
+            showTab(1);
+            // Step 1 starts expanded by default
+            document.getElementById('step1-content').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
