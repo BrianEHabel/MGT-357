@@ -1,0 +1,51 @@
+# Scientific Evidence: Critical Appraisal (CAT Manager Analysis)
+
+## CRITICAL APPRAISAL #1: Frazier Meta-Analysis
+
+**Study:** Frazier et al. (2017) - Psychological Safety Meta-Analysis
+
+### Study Design: ⭐⭐⭐⭐⭐ (Excellent)
+Meta-analysis = highest level of evidence. Synthesizes 136 independent studies with rigorous statistical methods.
+
+### Sample Size: ⭐⭐⭐⭐⭐ (5/5)
+N=26,471 individuals. Exceptional statistical power. Results highly stable and generalizable.
+
+### Measurement: ⭐⭐⭐⭐⭐ (5/5)
+Multiple validated scales across studies. Edmondson's Psychological Safety Scale most common (gold standard).
+
+### Bias Control: ⭐⭐⭐⭐☆ (4/5)
+Publication bias assessed (file drawer analysis). Some heterogeneity across studies but addressed through moderator analysis.
+
+### Generalizability: ⭐⭐⭐⭐⭐ (5/5)
+Multiple industries, countries, team types. Engineering teams specifically represented. Findings robust across contexts.
+
+### Overall Confidence: 90% (Very High)
+
+### Decision: ✅ USE THIS EVIDENCE
+This is gold-standard evidence. Large effect sizes, rigorous methodology, high generalizability. Strong support for X→Y hypothesis.
+
+---
+
+## CRITICAL APPRAISAL #2: Detert & Burris Longitudinal Study
+
+**Study:** Detert & Burris (2007) - Voice Behavior and Decision Quality
+
+### Study Design: ⭐⭐⭐⭐⭐ (Excellent)
+Longitudinal field study in real organizational setting. Multi-source data collection (employees + managers). Temporal separation between predictor and outcome measures.
+
+### Sample Size: ⭐⭐⭐⭐☆ (4/5)
+Multiple units with adequate power for multi-level analysis. Sufficient to detect meaningful effects. Single organization limits generalizability.
+
+### Measurement: ⭐⭐⭐⭐⭐ (5/5)
+Voice behavior and decision quality measured with validated scales. Manager ratings supplemented with unit-level objective metrics.
+
+### Bias Control: ⭐⭐⭐⭐☆ (4/5)
+Multi-source data reduces common method bias. Statistical controls for confounding variables. Longitudinal design strengthens causal inference.
+
+### Generalizability: ⭐⭐⭐☆☆ (3/5)
+Conducted in retail organization (different from engineering context). 17+ years old (workplace dynamics may have evolved). Voice mechanisms conceptually applicable across settings.
+
+### Overall Confidence: 75% (High)
+
+### Decision: ✅ USE THIS EVIDENCE
+Rigorous design and rare direct measurement of decision quality. Generalizability moderate but voice dynamics likely similar across contexts.

@@ -1,0 +1,65 @@
+# Scientific Evidence Sources: Peer-Reviewed Research
+
+## Evidence Collection Summary
+**Evidence Type:** Scientific (Academic Research)
+**Total Studies:** 2 peer-reviewed studies
+**Quality Level:** Very High (Meta-analysis + Longitudinal Study)
+**Sources:** Personnel Psychology, Academy of Management Journal
+
+---
+
+## STUDY 1: Meta-Analysis - Frazier et al. (2017)
+
+**Full Citation:**
+Frazier, M. L., Fainshmidt, S., Klinger, R. L., Pezeshkan, A., & Vracheva, V. (2017). Psychological safety: A meta-analytic review and extension. Personnel Psychology, 70(1), 113-165.
+
+**Study Design:** Meta-analysis of psychological safety research
+
+**Sample Size:** 136 independent studies; 26,471 individuals across multiple contexts
+
+**Key Findings:**
+• Psychological safety → Team learning behavior (r = 0.43, large effect)
+• Psychological safety → Team performance (r = 0.44, large effect)
+• Psychological safety → Information sharing (r = 0.51, very large effect)
+• Psychological safety → Voice behavior (r = 0.35, moderate-large effect)
+
+**Effect Size Interpretation:**
+r = 0.44 explains approximately 19% of variance in team performance. This is a LARGE, practically significant effect in organizational research.
+
+**Methodological Strengths:**
+✓ Very large sample (N=26,471)
+✓ Rigorous meta-analytic procedures
+✓ Publication bias checks conducted
+✓ Moderator analyses (context, measurement, etc.)
+✓ Longitudinal studies included (strengthens causal inference)
+
+**Relevance to Hypothesis:**
+Directly validates X→Y relationship: Psychological safety (X) → Team performance/decision quality (Y). Effect size is large and robust across contexts including engineering teams.
+
+**Quality Rating:** ⭐⭐⭐⭐⭐ (Excellent - Meta-analysis in top-tier journal)
+
+---
+
+## STUDY 2: Longitudinal Field Study - Detert & Burris (2007)
+
+**Full Citation:**
+Detert, J. R., & Burris, E. R. (2007). Leadership behavior and employee voice: Is the door really open? Academy of Management Journal, 50(4), 869-884.
+
+**Study Design:** Multi-wave longitudinal field study with multi-source data
+
+**Key Findings:**
+• Employee voice behavior → Decision quality (significant positive relationship)
+• Leader openness moderates the voice-performance link
+• Temporal separation between measures reduces common method bias
+• Multi-level analysis (employees nested within organizational units)
+
+**Methodological Strengths:**
+✓ Longitudinal design strengthens causal inference
+✓ Multi-source data (employee reports + manager ratings)
+✓ Rare direct measurement of "decision quality" as outcome
+✓ Objective unit-level metrics supplement subjective ratings
+
+**Relevance to Hypothesis:**
+Validates mechanism (M): Voice/dissent behavior directly improves decision quality. Demonstrates that psychological safety enables voice, which translates to measurable performance outcomes. Leader behavior identified as critical moderator.
+
+**Quality Rating:** ⭐⭐⭐⭐⭐ (Excellent - Premier journal, rigorous design)

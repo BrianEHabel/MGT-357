@@ -1,0 +1,124 @@
+# Practitioner Evidence: Critical Appraisal
+
+## APPRAISAL #1: Google Project Aristotle
+
+**Credibility:** ⭐⭐⭐⭐⭐ (Excellent)  
+Rigorous 2-year internal research with 180 teams. Transparent methodology. Results independently validated and replicated.
+
+**Relevance:** ⭐⭐⭐⭐⭐ (5/5)  
+Directly applicable to engineering teams. Identifies psychological safety as #1 team effectiveness factor.
+
+**Generalizability:** ⭐⭐⭐⭐☆ (4/5)  
+Large sample (180 teams) within Google context. High-resource organization may differ from mid-size contexts, but core mechanisms likely transferable.
+
+**Actionability:** ⭐⭐⭐⭐⭐ (5/5)  
+Provides specific interventions (leader modeling, structured feedback, explicit norms). Implementation guidance clear.
+
+**Overall Confidence:** 90% (Very High)
+
+**Decision:** ✅ USE THIS EVIDENCE  
+Gold-standard practitioner research. Validates psychological safety as critical and provides actionable interventions.
+
+---
+
+## APPRAISAL #2: McKinsey & Company Research
+
+**Credibility:** ⭐⭐⭐⭐⭐ (Excellent)  
+Multi-client data across Fortune 500. Rigorous analytical frameworks. Cross-industry validation.
+
+**Relevance:** ⭐⭐⭐⭐⭐ (5/5)  
+Directly addresses structured dissent interventions. Quantifies decision quality improvements (19%) and failure reductions (24%).
+
+**Generalizability:** ⭐⭐⭐⭐⭐ (5/5)  
+Cross-industry, large-scale data. Findings robust across organizational contexts.
+
+**Actionability:** ⭐⭐⭐⭐⭐ (5/5)  
+Specific recommendations: devil's advocate, pre-mortems, challenge sessions. ROI data supports business case.
+
+**Overall Confidence:** 90% (Very High)
+
+**Decision:** ✅ USE THIS EVIDENCE  
+Directly validates proposed intervention framework with quantified outcomes.
+
+---
+
+## APPRAISAL #3: HBR - Amy Edmondson
+
+**Credibility:** ⭐⭐⭐⭐⭐ (Excellent)  
+Preeminent researcher with 20+ years field validation. Academic rigor + practitioner translation.
+
+**Relevance:** ⭐⭐⭐⭐⭐ (5/5)  
+Addresses root cause (leader behavior). Provides 3-step implementation framework.
+
+**Generalizability:** ⭐⭐⭐⭐⭐ (5/5)  
+Principles applicable across organizational contexts. Extensive case study validation.
+
+**Actionability:** ⭐⭐⭐⭐⭐ (5/5)  
+Clear implementation steps: Set stage, invite participation, respond productively.
+
+**Overall Confidence:** 90% (Very High)
+
+**Decision:** ✅ USE THIS EVIDENCE  
+Authoritative source on psychological safety. Bridges theory and practice effectively.
+
+---
+
+## APPRAISAL #4: Engineering Team Lead Interview
+
+**Credibility:** ⭐⭐⭐☆☆ (Moderate)  
+Direct frontline experience. Single practitioner perspective limits generalizability.
+
+**Relevance:** ⭐⭐⭐⭐⭐ (5/5)  
+Validates psychological safety problems in engineering contexts. Confirms pre-mortems and anonymous tools as effective.
+
+**Generalizability:** ⭐⭐⭐☆☆ (3/5)  
+Single organization, single manager. Experience patterns likely representative but not statistically validated.
+
+**Actionability:** ⭐⭐⭐⭐☆ (4/5)  
+Specific tools validated (pre-mortems, anonymous idea submission). Implementation warnings valuable.
+
+**Overall Confidence:** 60% (Moderate)
+
+**Decision:** ✅ USE THIS EVIDENCE (with caveats)  
+Valuable frontline perspective validates engineering-specific concerns. Limited sample size noted.
+
+---
+
+## APPRAISAL #5: Scrum Master Interview
+
+**Credibility:** ⭐⭐⭐☆☆ (Moderate)  
+Facilitation experience across multiple teams. Single practitioner perspective.
+
+**Relevance:** ⭐⭐⭐⭐⭐ (5/5)  
+Directly validates rotating devil's advocate and anonymous tools. Agile context highly relevant.
+
+**Generalizability:** ⭐⭐⭐☆☆ (3/5)  
+Multiple teams within single organization. Patterns likely representative but not statistically validated.
+
+**Actionability:** ⭐⭐⭐⭐☆ (4/5)  
+Specific implementation keys: role rotation, feedback loops, legitimization.
+
+**Overall Confidence:** 60% (Moderate)
+
+**Decision:** ✅ USE THIS EVIDENCE (with caveats)  
+Validates intervention mechanisms in agile contexts. Limited sample size noted.
+
+---
+
+## OVERALL PRACTITIONER EVIDENCE ASSESSMENT
+
+**Aggregate Confidence:** 80% (High)
+
+**Strengths:**
+✓ Google and McKinsey provide rigorous, large-scale validation  
+✓ HBR/Edmondson bridges theory and practice authoritatively  
+✓ Direct interviews confirm engineering-specific applicability  
+✓ Convergent evidence across multiple independent sources  
+
+**Limitations:**
+⚠ Direct interviews limited to 2 practitioners (small sample)  
+⚠ Google context (high resources) may not fully generalize  
+⚠ Some retrospective self-report (vs. prospective measurement)  
+
+**Decision:** STRONG SUPPORT FOR HYPOTHESIS AND INTERVENTIONS  
+Practitioner evidence strongly validates both the problem (psychological safety deficits in teams) and the solution (structured dissent interventions). Combination of rigorous industry research + frontline experience provides high confidence.
