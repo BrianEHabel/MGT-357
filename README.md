@@ -1,154 +1,705 @@
-# Evidence-Based Management Dashboard
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My EBM Dashboard | MGT357 - Fall 2025</title>
+    <style>
+        /* === CSS CUSTOM PROPERTIES === */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #101820 0%, #FFB612 100%);
+            --tab-active: #101820;
+            --tab-inactive: #FFB612;
+            --tab-active-text: #FFB612;
+            --tab-inactive-text: #101820;
+            --step-gold: #FFB612;
+            --step-black: #101820;
+            --border-radius: 15px;
+            --transition-speed: 0.3s;
+        }
 
-**MGT357 - Fall 2025 | James Madison University**  
-**Student:** Brian Habel  
-**Problem Focus:** Organizational Groupthink in Decision-Making
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-## 🎯 Project Overview
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-This dashboard demonstrates a comprehensive Evidence-Based Management approach to addressing groupthink in organizational decision-making. The project follows the structured EBM process to develop, implement, and evaluate evidence-based solutions.
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
 
-## 🚀 Live Dashboard
+        .header {
+            background: linear-gradient(135deg, #101820, #FFB612);
+            color: #101820;
+            padding: 30px;
+            text-align: center;
+        }
 
-[View Live Dashboard](https://brianeabel.github.io/MGT-357/) (if GitHub Pages is enabled)
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #FFB612;
+            text-shadow: 2px 2px 0 #101820, 0 0 10px #10182022;
+        }
 
-## 📁 Project Structure
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            color: #101820;
+        }
 
-- `index.html` - Main dashboard file with interactive EBM process
-- `README.md` - Project documentation
+        .student-info {
+            background: rgba(255, 182, 18, 0.08);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.9em;
+        }
 
-## 🔍 EBM Process Phases
+        /* === SIMPLE TAB SYSTEM === */
+        .tab-nav {
+            display: flex;
+            background: #FFFDE4;
+            border-bottom: 3px solid #FFB612;
+        }
 
-### Phase 1: Problem & Solution Framework ✅
-- **Problem Definition:** X→Y and PICOC frameworks
-- **Stakeholder Analysis:** Primary and secondary stakeholder mapping  
-- **Success Criteria:** SMART goals and measurable outcomes
-- **Solution Constraints:** Budget, time, and organizational limitations
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background: var(--tab-inactive);
+            color: var(--tab-inactive-text);
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all var(--transition-speed);
+            border: none;
+            border-right: 2px solid #101820;
+        }
 
-### Phase 2: Evidence Collection 🔄
-- Scientific Evidence (Academic research)
-- Practitioner Evidence (Industry case studies)
-- Organizational Evidence (Internal data)
-- Stakeholder Evidence (Surveys and feedback)
+        .tab-button:last-child {
+            border-right: none;
+        }
 
-### Phase 3: Evidence Synthesis 📋
-- Aggregation of all evidence types
-- Quality appraisal and analysis
-- Evidence-based conclusions
+        .tab-button:hover {
+            background: #ffe066;
+            color: #101820;
+            transform: translateY(-2px);
+        }
 
-### Phase 4: Application Planning 🚀
-- Implementation roadmap
-- Resource allocation
-- Timeline and milestones
+        .tab-button.active {
+            background: var(--tab-active);
+            color: var(--tab-active-text);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,182,18, 0.3);
+        }
 
-### Phase 5: Assessment & Evaluation 📈
-- Success metrics measurement
-- ROI analysis
-- Lessons learned
+        .tab-content {
+            position: relative;
+            min-height: 500px;
+        }
 
-## 💡 Proposed Solution
+        .tab-panel {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s ease-in;
+        }
 
-**Structured Anti-Groupthink Intervention Framework**
-- Rotating devil's advocate roles
-- Anonymous digital feedback systems
-- Cognitive bias training programs
-- Diverse team composition policies
-- Decision quality assessment frameworks
+        .tab-panel.active {
+            display: block;
+        }
 
-## 📊 Expected Outcomes
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
-- **25%** improvement in decision quality scores
-- **20%** increase in innovation proposals
-- **15%** reduction in project rework
-- **$250K+** net annual ROI
+        /* === FLOWCHART STYLING === */
+        .flowchart-step {
+            background: var(--step-gold);
+            color: var(--step-black);
+            padding: 15px 25px;
+            border-radius: 25px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255,182,18, 0.22);
+            border: 2px solid #101820;
+        }
 
-## 🛠️ Technologies Used
+        .decision-diamond {
+            background: var(--step-black);
+            color: var(--step-gold);
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            position: relative;
+            transform: rotate(45deg);
+            border: 2px solid #FFB612;
+        }
 
-- HTML5, CSS3, JavaScript
-- Responsive design with mobile support
-- Interactive tabs and collapsible content
-- JMU purple and cream theme
+        .decision-diamond .text {
+            transform: rotate(-45deg);
+            font-weight: bold;
+        }
 
-## 📧 Contact
+        .content-file-preview {
+            background: #FFFDE4;
+            border: 2px dashed #FFB612;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-**Brian Habel**  
-James Madison University  
-College of Business - MGT357
+        .content-file-preview:hover {
+            border-color: #101820;
+            background: #fff9c4;
+        }
 
----
+        .content-file-preview h4 {
+            color: #FFB612;
+            margin-bottom: 10px;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-*This project demonstrates evidence-based management principles applied to real organizational challenges.*
-- [ ] Organizational evidence gathered and analyzed
-- [ ] Stakeholder evidence collected and evaluated
-- [ ] All four evidence types complete
+        .edit-notice {
+            background: #fff8e1;
+            border: 1px solid #FFB612;
+            color: #101820;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.8em;
+        }
 
-### 📅 Milestone 4: Application & Implementation (Week 12)
-- [ ] Evidence-based solution designed
-- [ ] Implementation plan developed
-- [ ] Recommendations clearly articulated
+        .evidence-type {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            color: #101820;
+            font-weight: bold;
+            background: #FFB612;
+            border: 1px solid #101820;
+        }
+        .scientific { background: #FFB612; color: #101820; }
+        .practitioner { background: #FFFDE4; color: #101820; }
+        .organizational { background: #101820; color: #FFB612; }
+        .stakeholder { background: #FFB612; color: #101820; }
 
-### 📅 Final Submission: Complete Dashboard Portfolio (Week 16)
-- [ ] All content complete and polished
-- [ ] Assessment and lessons learned documented
-- [ ] Professional presentation ready for portfolio
-- [ ] Peer review feedback incorporated
+        .evidence-section {
+            margin: 40px 0;
+            padding: 25px;
+            border-left: 5px solid #FFB612;
+            background: #FFFDE4;
+            border-radius: 10px;
+        }
 
----
+        .evidence-section h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+        }
 
-## 🚀 Getting Started (Do This Today!)
+        .evidence-section .content-file-preview {
+            margin: 15px 0;
+        }
 
-### Step 1: Set Up Your Workspace
-1. Open VS Code
-2. Create a new folder for your project
-3. Copy all template files into your folder
-4. Open `dashboard.html` in a web browser to see your dashboard
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFB612, #FFFDE4);
+            margin: 0;
+            border-bottom: 3px solid #101820;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
 
-### Step 2: Create Your GitHub Repository
-1. Follow the instructions in `GITHUB_GUIDE.md`
-2. Upload your project files
-3. Enable GitHub Pages to publish your dashboard online
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            margin: 0 5px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all var(--transition-speed);
+            position: relative;
+            cursor: pointer;
+            background: #FFFDE4;
+            color: #101820;
+            border: 2px solid #FFB612;
+        }
 
-### Step 3: Start with the ASK Phase
-1. Read Module 2 content about problem definition
-2. Open `content/ask-problem-definition.txt` in VS Code
-3. Start documenting your chosen management problem
-4. Use GitHub Copilot to help with writing and organization
+        .progress-step.completed {
+            background: linear-gradient(135deg, #101820, #444444);
+            color: #FFB612;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(16,24,32, 0.22);
+            border: 2px solid #FFB612;
+        }
 
-### Step 4: Use AI as Your Development Partner
-1. Read `AI_COLLABORATION_GUIDE.md`
-2. Practice asking GitHub Copilot for help
-3. Try Claude Sonnet 4 for complex analysis and writing
-4. Always end major requests with: *"Before you respond, ask me several questions that will enhance the quality of your response."*
+        .progress-step.active {
+            background: linear-gradient(135deg, #FFB612, #fff3b0);
+            color: #101820;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255,182,18, 0.26);
+            border: 2px solid #101820;
+        }
 
----
+        .progress-step.pending {
+            background: #FFFDE4;
+            color: #101820;
+            border: 2px dashed #FFB612;
+        }
 
-## 🆘 Need Help?
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
 
-### 🏢 Office Hours
-Professor Peterson - Check Canvas for current office hours
+        .progress-step.completed::after {
+            border-left-color: #101820;
+        }
 
-### 🤖 AI Assistance
-- **GitHub Copilot Pro**: Your coding and writing assistant
-- **Claude Sonnet 4**: Your analysis and strategy partner
+        .progress-step.active::after {
+            border-left-color: #FFB612;
+        }
 
-### 📖 Resources
-- `TROUBLESHOOTING.md` - Fix common problems
-- `AI_COLLABORATION_GUIDE.md` - Get better AI help
-- OLI Modules - Your evidence-based management textbook
+        .progress-step.pending::after {
+            border-left-color: #FFB612;
+        }
 
-### 🧑‍🤝‍🧑 Classmates
-Work individually, but help each other learn!
+        .progress-step:last-child::after {
+            display: none;
+        }
 
----
+        .btn {
+            background: linear-gradient(135deg, #101820, #444444);
+            color: #FFB612;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all var(--transition-speed);
+            border: 2px solid #FFB612;
+        }
 
-## 🎉 Why This Project Matters
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,182,18, 0.22);
+            background: #FFB612;
+            color: #101820;
+            border: 2px solid #101820;
+        }
 
-This isn't just a class assignment. You're building:
+        .milestone-tracker {
+            background: #FFFDE4;
+            border-left: 4px solid #FFB612;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
 
-✨ **Portfolio-worthy work** that shows employers your modern skills  
-🧠 **Evidence-based thinking** that will make you a better manager  
-🤖 **AI collaboration skills** that are essential for your career  
-💼 **Professional project** you can discuss in job interviews  
-🎯 **Practical experience** applying management theory to real problems  
+        .milestone-tracker h4 {
+            color: #101820;
+            margin-bottom: 10px;
+        }
 
-**Let's build something amazing together!** 🚀
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 5px 0;
+            color: #101820;
+        }
+
+        .checklist li:before {
+            content: "☐ ";
+            color: #FFB612;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 My Evidence-Based Management Dashboard</h1>
+            <p>MGT357 - Fall 2025 | Portfolio Project</p>
+            
+            <div class="student-info">
+                <div><strong>Student:</strong> [Brian Habel]</div>
+                <div><strong>Problem Focus:</strong> [Your Management Problem]</div>
+                <div><strong>Repository:</strong> <a href="#" style="color: #FFB612;">[Your GitHub Link]</a></div>
+                <div><strong>Last Updated:</strong> [Today's Date]</div>
+            </div>
+        </div>
+
+        <!-- Persistent Progress Indicator -->
+        <div class="progress-indicator">
+            <div class="progress-step pending" onclick="showTab(1)">🎯 Framework</div>
+            <div class="progress-step pending" onclick="showTab(2)">🔍 Evidence</div>
+            <div class="progress-step pending" onclick="showTab(3)">⚖️ Synthesis</div>
+            <div class="progress-step pending" onclick="showTab(4)">🚀 Application</div>
+            <div class="progress-step pending" onclick="showTab(5)">📊 Assessment</div>
+        </div>
+
+        <div class="tab-container">
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="showTab(1)">🎯 Problem & Solution Framework</button>
+                <button class="tab-button" onclick="showTab(2)">🔍 Evidence Hub</button>
+                <button class="tab-button" onclick="showTab(3)">⚖️ Aggregation</button>
+                <button class="tab-button" onclick="showTab(4)">🚀 Application</button>
+                <button class="tab-button" onclick="showTab(5)">📊 Assessment</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- TAB 1: Problem & Solution Framework -->
+                <div class="tab-panel active" id="tab-1">
+                    <h2>🎯 Problem & Solution Framework</h2>
+                    <p><strong>Following Module 2 Flowchart:</strong> Define the problem AND identify the preferred solution before collecting evidence.</p>
+                    
+                    <div class="milestone-tracker">
+                        <h4>📋 Milestone 1 Checklist (Due: Week 3)</h4>
+                        <ul class="checklist">
+                            <li>GitHub repository created and dashboard running</li>
+                            <li>Problem Definition completed using frameworks</li>
+                            <li>Stakeholder Analysis documented</li>
+                            <li>Success Criteria clearly defined</li>
+                            <li>Progress tracker updated</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flowchart-step">
+                        STEP 1: ASK - What is the assumed problem?
+                    </div>
+                    
+                    <div class="content-file-preview" onclick="openContentFile('ask-problem-definition.txt')">
+                        <h4>📝 content/ask-problem-definition.txt</h4>
+                        <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                        <pre id="problem-definition-content">[This content will load from your .txt file]
+
+Use the X → Y Framework and PICOC Framework to define your management problem clearly.
+See the template file for detailed prompts and structure.</pre>
+                    </div>
+
+                    <div class="content-file-preview" onclick="openContentFile('ask-stakeholder-analysis.txt')">
+                        <h4>📝 content/ask-stakeholder-analysis.txt</h4>
+                        <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                        <pre id="stakeholder-analysis-content">[This content will load from your .txt file]
+
+Identify all stakeholders affected by your problem and potential solution.
+Consider internal and external stakeholders, their interests, and influence levels.</pre>
+                    </div>
+
+                    <div class="content-file-preview" onclick="openContentFile('ask-success-criteria.txt')">
+                        <h4>📝 content/ask-success-criteria.txt</h4>
+                        <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                        <pre id="success-criteria-content">[This content will load from your .txt file]
+
+Define specific, measurable criteria for success.
+How will you know if your evidence-based solution worked?</pre>
+                    </div>
+
+                    <div class="flowchart-step">
+                        STEP 2: ASK - What is the evidence for the assumed problem?
+                    </div>
+
+                    <div class="flowchart-step">
+                        STEP 3: ASK - What is the preferred solution?
+                    </div>
+
+                    <div class="flowchart-step">
+                        STEP 4: ASK - What is the evidence for the preferred solution?
+                    </div>
+
+                    <p><strong>Next Phase:</strong> Now that we have our problem framework defined, we move to the Evidence Hub to systematically collect and evaluate evidence from all four sources to answer Steps 2 & 4.</p>
+                </div>
+
+                <!-- TAB 2: Evidence Hub -->
+                <div class="tab-panel" id="tab-2">
+                    <h2>🔍 Evidence Hub</h2>
+                    <p><strong>Purpose:</strong> Systematically collect and critically evaluate evidence from all four sources.</p>
+
+                    <div class="milestone-tracker">
+                        <h4>📋 Milestone 2 & 3 Checkpoints</h4>
+                        <ul class="checklist">
+                            <li><strong>Milestone 2 (Week 6):</strong> Scientific & Practitioner Evidence Complete</li>
+                            <li><strong>Milestone 3 (Week 9):</strong> Organizational & Stakeholder Evidence Complete</li>
+                            <li>All acquisition methods documented</li>
+                            <li>Evidence sources collected and organized</li>
+                            <li>Quality appraisals completed for each evidence type</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #FFFDE4; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🎯 Evidence Collection Goals:</h4>
+                        <ul>
+                            <li><strong>For Step 2:</strong> What evidence supports our assumed problem?</li>
+                            <li><strong>For Step 4:</strong> What evidence supports our preferred solution?</li>
+                        </ul>
+                    </div>
+
+                    <!-- Scientific Evidence Section -->
+                    <div class="evidence-section">
+                        <h3 class="evidence-type scientific">🔬 Scientific Evidence</h3>
+                        
+                        <div class="content-file-preview" onclick="openContentFile('evidence-scientific-methods.txt')">
+                            <h4>📝 content/evidence-scientific-methods.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Document your search strategy, databases used, keywords, and selection criteria]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-scientific-sources.txt')">
+                            <h4>📝 content/evidence-scientific-sources.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[List and summarize the research studies, meta-analyses, and systematic reviews you found]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-scientific-appraisal.txt')">
+                            <h4>📝 content/evidence-scientific-appraisal.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Evaluate the quality, reliability, and relevance of your scientific evidence]</pre>
+                        </div>
+                    </div>
+
+                    <!-- Practitioner Evidence Section -->
+                    <div class="evidence-section">
+                        <h3 class="evidence-type practitioner">👔 Practitioner Evidence</h3>
+                        
+                        <div class="content-file-preview" onclick="openContentFile('evidence-practitioner-methods.txt')">
+                            <h4>📝 content/evidence-practitioner-methods.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Document how you collected practitioner insights, interviews, case studies]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-practitioner-sources.txt')">
+                            <h4>📝 content/evidence-practitioner-sources.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Summarize expert interviews, case studies, and professional experience]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-practitioner-appraisal.txt')">
+                            <h4>📝 content/evidence-practitioner-appraisal.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Assess the credibility and relevance of practitioner evidence]</pre>
+                        </div>
+                    </div>
+
+                    <!-- Organizational Evidence Section -->
+                    <div class="evidence-section">
+                        <h3 class="evidence-type organizational">🏢 Organizational Evidence</h3>
+                        
+                        <div class="content-file-preview" onclick="openContentFile('evidence-organizational-methods.txt')">
+                            <h4>📝 content/evidence-organizational-methods.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Document internal data collection methods and sources]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-organizational-sources.txt')">
+                            <h4>📝 content/evidence-organizational-sources.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Present internal data, KPIs, reports, and organizational studies]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-organizational-appraisal.txt')">
+                            <h4>📝 content/evidence-organizational-appraisal.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Evaluate the quality and limitations of organizational data]</pre>
+                        </div>
+                    </div>
+
+                    <!-- Stakeholder Evidence Section -->
+                    <div class="evidence-section">
+                        <h3 class="evidence-type stakeholder">👥 Stakeholder Evidence</h3>
+                        
+                        <div class="content-file-preview" onclick="openContentFile('evidence-stakeholder-methods.txt')">
+                            <h4>📝 content/evidence-stakeholder-methods.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Document stakeholder engagement methods, surveys, interviews]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-stakeholder-sources.txt')">
+                            <h4>📝 content/evidence-stakeholder-sources.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Summarize stakeholder feedback, surveys, and input]</pre>
+                        </div>
+
+                        <div class="content-file-preview" onclick="openContentFile('evidence-stakeholder-appraisal.txt')">
+                            <h4>📝 content/evidence-stakeholder-appraisal.txt</h4>
+                            <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                            <pre>[Assess the representativeness and reliability of stakeholder evidence]</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Aggregation -->
+                <div class="tab-panel" id="tab-3">
+                    <h2>⚖️ Evidence Aggregation</h2>
+                    <p><strong>Synthesis Process:</strong> Weigh and combine evidence from multiple sources to form conclusions.</p>
+
+                    <div class="milestone-tracker">
+                        <h4>📋 Milestone 4 Checkpoint (Week 12)</h4>
+                        <ul class="checklist">
+                            <li>Evidence synthesis across all four types completed</li>
+                            <li>Solution design based on evidence analysis</li>
+                            <li>Implementation plan developed</li>
+                            <li>Risk assessment and mitigation strategies</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-file-preview" onclick="openContentFile('synthesis-integration.txt')">
+                        <h4>📝 content/synthesis-integration.txt</h4>
+                        <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                        <pre id="evidence-synthesis-content">[Synthesize evidence from all four sources to reach evidence-based conclusions]
+
+Document areas of agreement, disagreement, and evidence quality.
+Weight the evidence and form recommendations.</pre>
+                    </div>
+                </div>
+
+                <!-- TAB 4: Application -->
+                <div class="tab-panel" id="tab-4">
+                    <h2>🚀 Application</h2>
+                    <p><strong>Implementation Planning:</strong> Put the evidence-based solution into practice.</p>
+
+                    <div class="content-file-preview" onclick="openContentFile('application-implementation.txt')">
+                        <h4>📝 content/application-implementation.txt</h4>
+                        <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                        <pre>[Create detailed implementation plan with timeline, resources, and stakeholder communication]</pre>
+                    </div>
+                </div>
+
+                <!-- TAB 5: Assessment -->
+                <div class="tab-panel" id="tab-5">
+                    <h2>📊 Assessment</h2>
+                    <p><strong>Continuous Improvement:</strong> Evaluate results and refine the approach.</p>
+
+                    <div class="milestone-tracker">
+                        <h4>📋 Final Submission Checklist (Week 16)</h4>
+                        <ul class="checklist">
+                            <li>Assessment framework completed</li>
+                            <li>Lessons learned documented</li>
+                            <li>Dashboard polished for portfolio</li>
+                            <li>Peer review feedback incorporated</li>
+                            <li>Final reflection on EBM process</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-file-preview" onclick="openContentFile('assessment-monitoring.txt')">
+                        <h4>📝 content/assessment-monitoring.txt</h4>
+                        <div class="edit-notice">🖊️ Click to edit this file in VS Code</div>
+                        <pre>[Evaluate the effectiveness of your EBM process and solution]</pre>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <h3>🎉 EBM Cycle Complete!</h3>
+                        <p>Congratulations! You've built a professional Evidence-Based Management dashboard.</p>
+                        <div>
+                            <button class="btn" onclick="window.open('PROJECT_TRACKER.md')">📊 View Project Tracker</button>
+                            <button class="btn" onclick="showTab(1)">↻ Review Complete Process</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Content file loading functionality
+        function loadContentFiles() {
+            // This function would load content from .txt files
+            // For now, it shows placeholder content
+            console.log('Content files would be loaded here');
+        }
+
+        // Function to simulate opening content files in VS Code
+        function openContentFile(filename) {
+            alert(`In VS Code, you would open: content/${filename}\n\nThis is where you'll edit your content. Use GitHub Copilot to help with writing and organization!`);
+        }
+
+        // Tab Navigation Functionality
+        function showTab(tabNumber) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show the selected tab panel
+            document.getElementById(`tab-${tabNumber}`).classList.add('active');
+            
+            // Add active class to the clicked button
+            buttons[tabNumber - 1].classList.add('active');
+            
+            // Update progress indicator
+            updateProgressIndicator(tabNumber);
+        }
+        
+        // Update Progress Indicator based on current tab
+        function updateProgressIndicator(currentTab) {
+            const progressSteps = document.querySelectorAll('.progress-step');
+            
+            progressSteps.forEach((step, index) => {
+                step.classList.remove('completed', 'active', 'pending');
+                
+                if (index + 1 < currentTab) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentTab) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.add('pending');
+                }
+            });
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadContentFiles();
+            updateProgressIndicator(1);
+        });
+    </script>
+</body>
+</html>
